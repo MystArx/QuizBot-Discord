@@ -1,0 +1,227 @@
+import discord
+import random
+
+
+client=discord.Client()
+dir=['Sunil Chhetri','bfc' ,
+     'Liston Colaco', 'atkmb',
+     'Bart Ogbeche', 'hfc',
+     'Greg Stewart','jfc',
+     'Igor Angulo','mcfc',
+     'Adrian Luna','kbfc',
+     'Hira Mondal','sceb',
+     'Marcelinho','neufc',
+     'Javi Hernandez','ofc',
+     'Nerijus Valksis','cfc',
+     'Dheeraj Singh','fcg',
+     'Sachin Tendulkar','India',
+     'Virat Kohli','India',
+     'MS Dhoni', 'India',
+     'Vivian Richards','Westendies',
+     'Shane Warne','Austraia',
+     'Sanath Jaysurya','Srilanka',
+     'Lasith Malinga','Srilanka',
+     'Malcom Marshall','Westendies',
+     'Sunil Gavaskar','India',
+     'Steve Waugh','Australia',
+     'Kapil Dev','India'
+    ]
+#club-proper club name
+streak=0 
+@client.event
+async def on_message(message):
+  if message.author==client.user:
+      return
+   
+  if message.content.startswith('!qguess'):
+    channel=message.channel
+    
+   
+  
+    
+    x=random.randrange(0,44,2)
+    yright=random.randrange(1,4)
+    ywrong=random.randrange(1,4)
+    player=dir[x]
+    ans=dir[x+1]
+    if ans=='bfc':
+      club='Bengaluru FC'
+      clink='https://hmp.me/dr8o'
+    elif ans=='atkmb':
+      club='ATK Mohun Bagan'
+      clink='https://hmp.me/dr8r'
+    elif ans=='hfc':
+      club='Hyderabad FC'
+      clink='https://hmp.me/dr8t'
+    elif ans=='jfc':
+      club='Jamshedpur FC'
+      clink='https://hmp.me/dr8v'
+    elif ans=='mcfc':
+      club='Mumbai City FC'
+      clink='https://hmp.me/dr8x'
+    elif ans=='kbfc':
+      club='Kerala Blasters FC'
+      clink='https://hmp.me/dr8w'
+    elif ans=='neufc':
+      club='Northeast United FC'
+      clink='https://hmp.me/dr8y'
+    elif ans=='fcg':
+      club='FC Goa'
+      clink='https://hmp.me/dr8s'
+    elif ans=='cfc':
+      club='Chennaiyin FC'
+      clink='https://hmp.me/dr8q'
+    elif ans=='sceb':
+      club='SC East Bengal'
+      clink='https://hmp.me/dr80'
+    elif ans=='ofc':
+      club='Odisha FC'
+      clink='https://hmp.me/dr8z'
+
+      
+    if player=='Sunil Chhetri':
+      img='https://hmp.me/dr73'
+    elif player=='Liston Colaco':
+      img='https://hmp.me/dr76'
+    elif player=='Bart Ogbeche':
+      img='https://hmp.me/dr77'
+    elif player=='Greg Stewart':
+      img='https://hmp.me/dr78'
+    elif player=='Igor Angulo':
+      img='https://hmp.me/dr72'
+    elif player=='Adrian Luna':
+      img='https://hmp.me/dr79'
+    elif player=='Hira Mondal':
+      img='https://hmp.me/dr8a'
+    elif player=='Marcelinho':
+      img='https://hmp.me/dr8b'
+    elif player=='Nerijus Valksis':
+      img='https://hmp.me/dr8d'
+    elif player=='Dheeraj Singh':
+      img='https://hmp.me/dr8c'
+    elif player=='Javi Hernandez':
+      img='https://hmp.me/dr8e'
+    elif player=='Sachin Tendulkar':
+      img='https://hmp.me/dr82'
+      club='India'
+      clink='https://hmp.me/dr85'
+    elif player=='Virat Kohli':
+      img='https://hmp.me/dr83'
+      club='India'
+      clink='https://hmp.me/dr85'
+    elif player=='MS Dhoni':
+      img='https://hmp.me/dr89'
+      club='India'
+      clink='https://hmp.me/dr85'
+    elif player=='Vivian Richards':
+      img='https://hmp.me/dr9a'
+      club='West Indies'
+      clink-'https://hmp.me/dr86'
+    elif player=='Shane Warne':
+      img='https://hmp.me/dr9b'
+      club='Australia'
+      clink='https://hmp.me/dr84'
+    elif player=='Sanath Jaysurya':
+      img='https://hmp.me/dr9c'
+      club='Sri Lanka'
+      clink='https://hmp.me/dr87'
+    elif player=='Lasith Malinga':
+      img='https://hmp.me/dr9d'
+      club='Sri Lanka'
+      clink='https://hmp.me/dr87'
+    elif player=='Malcom Marshall':
+      img='https://hmp.me/dr9e'
+      club='West Indies'
+      clink-'https://hmp.me/dr86'
+    elif player=='Sunil Gavaskar':
+      img='https://hmp.me/dr9f'
+      club='India'
+      clink='https://hmp.me/dr85'
+    elif player=='Steve Waugh':
+      img='https://hmp.me/dr9g'
+      club='Australia'
+      clink='https://hmp.me/dr84'
+    elif player=='Kapil Dev':
+      img='https://hmp.me/dr9h' 
+      club='India'
+      clink='https://hmp.me/dr85'
+      
+    
+    print(player)
+
+    
+    Title='Recognize this famous player from '+club+' ! '
+    guess = discord.Embed(
+        title='Guess Who!',
+        description=Title,
+        color = discord.Colour.green()
+      )
+    guess.set_image(url=img)
+    guess.set_thumbnail(url=clink)
+  
+  
+    await channel.send(embed=guess)
+    
+    answer=await client.wait_for('message')
+    if answer.author==message.author:
+      ansfinal=answer.content
+      print(ansfinal)
+      pcheck=player.lower()
+      acheck=ansfinal.lower()
+      wrng_desc='"The Correct Answer is '+player
+     
+
+      if yright==1:
+         crclink='https://thumbs.dreamstime.com/b/congratulations-quote-vector-concept-desing-word-hand-drawn-text-holiday-design-stylized-lettering-confetti-decorations-153518656.jpg'
+
+
+      if yright==2:
+          crclink='https://hmp.me/dr9j'
+
+
+      if yright==3:
+          crclink='https://hmp.me/dr9i'
+
+      if ywrong==1:
+        wlink='https://hmp.me/dr9k'
+        
+
+      if ywrong==2:
+        wlink='https://hmp.me/dr9l'
+
+
+
+      if ywrong==3:
+        wlink='https://hmp.me/dr9n'
+
+      
+      
+      
+      if len(acheck)>=5 and acheck in pcheck:
+        global streak
+        streak+=1
+        streak_string=str(streak)
+        sdes='Your Streak is now '+ streak_string
+        correct=discord.Embed(
+          title="Congratulations! Right Answer",
+          description=sdes,
+          color=0xff5778)
+        correct.set_footer(text="Thanks for using QuizBot")
+        correct.set_image(url=crclink)
+        
+        await channel.send(embed=correct)
+      else:
+        streak=0
+        wrong=discord.Embed(
+          title="Oh No! Streak reset",
+          description=wrng_desc,
+          color=0xff5778)
+        wrong.set_footer(text="Thanks for using QuizBot")
+        wrong.set_image(url=wlink)
+        
+        await channel.send(embed=wrong)
+           
+    
+
+
+client.run('#{Discord Bot Token}')  
